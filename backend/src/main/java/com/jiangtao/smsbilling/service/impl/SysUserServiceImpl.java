@@ -5,12 +5,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jiangtao.smsbilling.entity.SysUser;
 import com.jiangtao.smsbilling.mapper.SysUserMapper;
 import com.jiangtao.smsbilling.service.SysUserService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import cn.hutool.crypto.digest.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public SysUser login(String username, String password) {
@@ -18,7 +17,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (user == null) {
             throw new RuntimeException("用户不存在");
         }
-        if (!passwordEncoder.matches(password, user.getPassword())) {
+        if (!BCrypt.checkpw(password, user.getPassword())) {
             throw new RuntimeException("密码错误");
         }
         return user;
@@ -28,10 +27,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public boolean changePassword(Long userId, String oldPassword, String newPassword) {
         SysUser user = getById(userId);
         if (user == null) return false;
-        if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
+        if (!BCrypt.checkpw(oldPassword, user.getPassword())) {
             throw new RuntimeException("原密码错误");
         }
-        user.setPassword(passwordEncoder.encode(newPassword));
+        user.setPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()));
         return updateById(user);
     }
 }
