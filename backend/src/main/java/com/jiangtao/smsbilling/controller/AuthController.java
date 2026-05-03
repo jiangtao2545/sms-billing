@@ -29,6 +29,10 @@ public class AuthController {
     public Result<Map<String, Object>> login(@RequestBody Map<String, String> body, HttpServletRequest request) {
         String username = body.get("username");
         String password = body.get("password");
+        // BCrypt 最多处理 72 个字符，超出部分会被静默截断，因此在此处主动拒绝超长密码
+        if (password != null && password.length() > 72) {
+            return Result.error("密码长度不能超过72个字符");
+        }
         try {
             SysUser user = sysUserService.login(username, password);
             String token = jwtUtil.generateToken(user.getId(), user.getUsername());
@@ -59,6 +63,10 @@ public class AuthController {
         Long userId = (Long) request.getAttribute("userId");
         String oldPassword = body.get("oldPassword");
         String newPassword = body.get("newPassword");
+        // BCrypt 最多处理 72 个字符，超出部分会被静默截断，因此在此处主动拒绝超长密码
+        if (newPassword != null && newPassword.length() > 72) {
+            return Result.error("密码长度不能超过72个字符");
+        }
         sysUserService.changePassword(userId, oldPassword, newPassword);
         return Result.success();
     }
