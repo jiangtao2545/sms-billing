@@ -22,12 +22,14 @@ import java.util.List;
 public class SmsRecordServiceImpl extends ServiceImpl<SmsRecordMapper, SmsRecord> implements SmsRecordService {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+    private static final double SMS_SUCCESS_RATE = 0.9;
+
     @Override
     public SmsRecord send(String appId, String phone, String content, BigDecimal price) {
         int charCount = SmsCountUtil.countChars(content);
         int billingCount = SmsCountUtil.countBillingSegments(charCount);
         BigDecimal totalFee = SmsCountUtil.calcFee(billingCount, price);
-        int status = Math.random() < 0.9 ? 1 : 0;
+        int status = Math.random() < SMS_SUCCESS_RATE ? 1 : 0;
 
         SmsRecord record = new SmsRecord();
         record.setAppId(appId);
