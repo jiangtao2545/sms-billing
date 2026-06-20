@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS `sms_application` (
   `app_name` VARCHAR(100) NOT NULL,
   `app_key` VARCHAR(64) NOT NULL,
   `price` DECIMAL(10,4) NOT NULL DEFAULT 0.0500,
+  `signature` VARCHAR(20) DEFAULT NULL,
+  `sms_type` TINYINT NOT NULL DEFAULT 1,
   `status` TINYINT NOT NULL DEFAULT 1,
   `create_time` DATETIME DEFAULT NULL,
   `update_time` DATETIME DEFAULT NULL,
@@ -31,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `sms_record` (
   `billing_count` INT DEFAULT 0,
   `price` DECIMAL(10,4) DEFAULT 0.0000,
   `total_fee` DECIMAL(10,4) DEFAULT 0.0000,
+  `req_id` VARCHAR(32) DEFAULT NULL,
   `status` TINYINT NOT NULL DEFAULT 0,
   `create_time` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -52,3 +55,8 @@ CREATE TABLE IF NOT EXISTS `sys_login_log` (
 
 INSERT INTO `sys_user` (`username`, `password`, `nickname`, `create_time`)
 VALUES ('admin', '$2a$10$EslJzu2hkwwUnEl1zPadc.TAdYqeFcOq.948hfKa36PfODeEGETtG', '管理员', NOW());
+
+-- 已有数据库执行以下迁移SQL:
+-- ALTER TABLE `sms_application` ADD COLUMN `signature` VARCHAR(20) DEFAULT NULL AFTER `price`;
+-- ALTER TABLE `sms_application` ADD COLUMN `sms_type` TINYINT NOT NULL DEFAULT 1 AFTER `signature`;
+-- ALTER TABLE `sms_record` ADD COLUMN `req_id` VARCHAR(32) DEFAULT NULL AFTER `total_fee`;

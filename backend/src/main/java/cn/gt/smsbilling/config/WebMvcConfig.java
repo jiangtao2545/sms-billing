@@ -18,7 +18,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
                 .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/auth/login", "/api/openapi/**");
+                .excludePathPatterns("/api/auth/login", "/api/openapi/**", "/api/callback/**");
 
         registry.addInterceptor(appAuthInterceptor)
                 .addPathPatterns("/api/openapi/**");

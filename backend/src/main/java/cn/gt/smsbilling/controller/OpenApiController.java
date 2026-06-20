@@ -21,7 +21,7 @@ public class OpenApiController {
         SmsApplication app = (SmsApplication) request.getAttribute("app");
         String phone = body.get("phone");
         String content = body.get("content");
-        SmsRecord record = smsRecordService.send(app.getAppId(), phone, content, app.getPrice());
+        SmsRecord record = smsRecordService.send(app.getAppId(), phone, content, app.getPrice(), app.getSignature(), app.getSmsType());
         return Result.success(record);
     }
 }

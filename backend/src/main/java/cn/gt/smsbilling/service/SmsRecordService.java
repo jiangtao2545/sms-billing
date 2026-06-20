@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface SmsRecordService extends IService<SmsRecord> {
-    SmsRecord send(String appId, String phone, String content, BigDecimal price);
-    List<SmsRecord> batchSend(String appId, List<String> phones, String content, BigDecimal price);
+    SmsRecord send(String appId, String phone, String content, BigDecimal price, String signature, Integer smsType);
+    List<SmsRecord> batchSend(String appId, List<String> phones, String content, BigDecimal price, String signature, Integer smsType);
+    void updateStatusByReqIdAndPhone(String reqId, String phone, int status);
     byte[] exportExcel(String appId, String phone, String startTime, String endTime, Integer status) throws Exception;
 }

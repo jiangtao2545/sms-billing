@@ -11,8 +11,10 @@
         </el-form-item>
         <el-form-item label="状态">
           <el-select v-model="query.status" placeholder="全部" clearable>
-            <el-option label="成功" :value="1" />
-            <el-option label="失败" :value="0" />
+            <el-option label="提交失败" :value="0" />
+            <el-option label="已提交" :value="1" />
+            <el-option label="发送成功" :value="2" />
+            <el-option label="发送失败" :value="3" />
           </el-select>
         </el-form-item>
         <el-form-item label="开始时间">
@@ -36,10 +38,10 @@
         <el-table-column prop="billingCount" label="计费条" width="80" />
         <el-table-column prop="price" label="单价" width="80" />
         <el-table-column prop="totalFee" label="费用" width="80" />
-        <el-table-column prop="status" label="状态" width="80">
+        <el-table-column prop="status" label="状态" width="90">
           <template slot-scope="scope">
-            <el-tag :type="scope.row.status === 1 ? 'success' : 'danger'">
-              {{ scope.row.status === 1 ? '成功' : '失败' }}
+            <el-tag :type="statusTagType(scope.row.status)" size="small">
+              {{ statusText(scope.row.status) }}
             </el-tag>
           </template>
         </el-table-column>
@@ -95,6 +97,14 @@ export default {
     handleSearch() {
       this.pageNum = 1
       this.loadData()
+    },
+    statusText(status) {
+      const map = { 0: '提交失败', 1: '已提交', 2: '发送成功', 3: '发送失败' }
+      return map[status] || '未知'
+    },
+    statusTagType(status) {
+      const map = { 0: 'danger', 1: 'warning', 2: 'success', 3: 'danger' }
+      return map[status] || 'info'
     },
     handlePageChange(page) {
       this.pageNum = page

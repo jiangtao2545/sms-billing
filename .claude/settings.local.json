@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp -r main/java/com/jiangtao/smsbilling/* main/java/cn/gt/smsbilling/)",
+      "Bash(cp -r test/java/com/jiangtao/smsbilling/* test/java/cn/gt/smsbilling/)",
+      "Bash(mkdir -p /home/aptx-4869/workspace/sms-billing/backend/src/main/java/cn/gt/smsbilling)",
+      "Bash(mkdir -p /home/aptx-4869/workspace/sms-billing/backend/src/test/java/cn/gt/smsbilling)",
+      "Bash(cp -r /home/aptx-4869/workspace/sms-billing/backend/src/main/java/com/jiangtao/smsbilling/* /home/aptx-4869/workspace/sms-billing/backend/src/main/java/cn/gt/smsbilling/)",
+      "Bash(cp -r /home/aptx-4869/workspace/sms-billing/backend/src/test/java/com/jiangtao/smsbilling/* /home/aptx-4869/workspace/sms-billing/backend/src/test/java/cn/gt/smsbilling/)",
+      "Bash(grep *)",
+      "Bash(rm -rf /home/aptx-4869/workspace/sms-billing/backend/src/main/java/com/)",
+      "Bash(rm -rf /home/aptx-4869/workspace/sms-billing/backend/src/test/java/com/)",
+      "Bash(python3 -c \"import bcrypt; print\\(bcrypt.hashpw\\(b'123456', bcrypt.gensalt\\(rounds=10\\)\\).decode\\(\\)\\)\")",
+      "Bash(python3 -c \"import bcrypt\")",
+      "Bash(mysql *)",
+      "Bash(pip3 install *)",
+      "Bash(sudo apt-get install -y mysql-client)",
+      "Bash(python3 -m pip install pymysql)",
+      "Bash(mvn --version)",
+      "Read(//tmp/**)",
+      "Bash(javac -cp \"/home/aptx-4869/.m2/repository/com/mysql/mysql-connector-j/8.2.0/mysql-connector-j-8.2.0.jar\" ResetAdminPassword.java)",
+      "Bash(java -cp \".:/home/aptx-4869/.m2/repository/com/mysql/mysql-connector-j/8.2.0/mysql-connector-j-8.2.0.jar\" ResetAdminPassword)",
+      "Bash(javac -cp \"/home/aptx-4869/.m2/repository/cn/hutool/hutool-all/5.8.25/hutool-all-5.8.25.jar\" GenHash.java)",
+      "Bash(java -cp \".:/home/aptx-4869/.m2/repository/cn/hutool/hutool-all/5.8.25/hutool-all-5.8.25.jar\" GenHash)",
+      "Bash(mvn test *)",
+      "Bash(mvn compile *)"
+    ]
+  }
+}

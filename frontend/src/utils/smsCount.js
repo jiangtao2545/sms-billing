@@ -1,6 +1,7 @@
 const BMP_MAX_CODE_POINT = 0xFFFF
 const SINGLE_SMS_MAX_CHARS = 70
 const MULTI_SMS_SEGMENT_CHARS = 67
+const UNSUBSCRIBE_TEXT = '回T退订'
 
 function countChars(content) {
   if (!content) return 0
@@ -27,4 +28,12 @@ function calcFee(segments, price) {
   return (segments * price).toFixed(4)
 }
 
-export { countChars, countBillingSegments, calcFee }
+function buildFullMessage(content, signature, smsType) {
+  let full = ''
+  if (signature) full += '【' + signature + '】'
+  full += content
+  if (smsType === 2) full += UNSUBSCRIBE_TEXT
+  return full
+}
+
+export { countChars, countBillingSegments, calcFee, buildFullMessage }

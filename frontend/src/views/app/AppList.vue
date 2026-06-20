@@ -9,6 +9,14 @@
         <el-table-column prop="appId" label="应用ID" width="260" />
         <el-table-column prop="appName" label="应用名称" />
         <el-table-column prop="appKey" label="AppKey" width="280" show-overflow-tooltip />
+        <el-table-column prop="signature" label="签名" width="120" />
+        <el-table-column prop="smsType" label="类型" width="80">
+          <template slot-scope="scope">
+            <el-tag size="small" :type="scope.row.smsType === 2 ? 'warning' : ''">
+              {{ scope.row.smsType === 2 ? '营销' : '通知' }}
+            </el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="price" label="单价(元/条)" width="120" />
         <el-table-column prop="status" label="状态" width="80">
           <template slot-scope="scope">
@@ -46,6 +54,15 @@
         <el-form-item label="应用名称">
           <el-input v-model="form.appName" />
         </el-form-item>
+        <el-form-item label="短信签名">
+          <el-input v-model="form.signature" placeholder="如：【XX科技】" />
+        </el-form-item>
+        <el-form-item label="短信类型">
+          <el-select v-model="form.smsType">
+            <el-option label="通知短信" :value="1" />
+            <el-option label="营销短信" :value="2" />
+          </el-select>
+        </el-form-item>
         <el-form-item label="单价(元/条)">
           <el-input v-model="form.price" type="number" step="0.0001" />
         </el-form-item>
@@ -71,7 +88,7 @@ export default {
       pageSize: 10,
       dialogVisible: false,
       dialogTitle: '新建应用',
-      form: { id: null, appName: '', price: '0.0500' },
+      form: { id: null, appName: '', signature: '', smsType: 1, price: '0.0500' },
       isEdit: false
     }
   },
@@ -94,20 +111,20 @@ export default {
     showCreate() {
       this.isEdit = false
       this.dialogTitle = '新建应用'
-      this.form = { id: null, appName: '', price: '0.0500' }
+      this.form = { id: null, appName: '', signature: '', smsType: 1, price: '0.0500' }
       this.dialogVisible = true
     },
     handleEdit(row) {
       this.isEdit = true
       this.dialogTitle = '编辑应用'
-      this.form = { id: row.id, appName: row.appName, price: row.price }
+      this.form = { id: row.id, appName: row.appName, signature: row.signature || '', smsType: row.smsType || 1, price: row.price }
       this.dialogVisible = true
     },
     async handleSubmit() {
       if (this.isEdit) {
-        await updateApp(this.form.id, { appName: this.form.appName, price: this.form.price })
+        await updateApp(this.form.id, { appName: this.form.appName, signature: this.form.signature, smsType: this.form.smsType, price: this.form.price })
       } else {
-        await createApp({ appName: this.form.appName, price: this.form.price })
+        await createApp({ appName: this.form.appName, signature: this.form.signature, smsType: this.form.smsType, price: this.form.price })
       }
       this.$message.success('操作成功')
       this.dialogVisible = false

@@ -29,7 +29,9 @@ public class AppController {
     public Result<SmsApplication> create(@RequestBody Map<String, Object> body) {
         String appName = (String) body.get("appName");
         BigDecimal price = new BigDecimal(body.get("price").toString());
-        SmsApplication app = appService.createApp(appName, price);
+        String signature = (String) body.get("signature");
+        Integer smsType = body.get("smsType") != null ? ((Number) body.get("smsType")).intValue() : 1;
+        SmsApplication app = appService.createApp(appName, price, signature, smsType);
         return Result.success(app);
     }
 

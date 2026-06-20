@@ -17,6 +17,7 @@ public class SmsRecord {
     private Integer billingCount;
     private BigDecimal price;
     private BigDecimal totalFee;
+    private String reqId;
     private Integer status;
     private LocalDateTime createTime;
 }

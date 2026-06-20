@@ -21,12 +21,14 @@ public class SmsApplicationServiceImpl extends ServiceImpl<SmsApplicationMapper,
     private SmsRecordMapper smsRecordMapper;
 
     @Override
-    public SmsApplication createApp(String appName, BigDecimal price) {
+    public SmsApplication createApp(String appName, BigDecimal price, String signature, Integer smsType) {
         SmsApplication app = new SmsApplication();
         app.setAppId(UUID.randomUUID().toString(true));
         app.setAppName(appName);
         app.setAppKey(RandomUtil.randomString(32));
         app.setPrice(price);
+        app.setSignature(signature);
+        app.setSmsType(smsType != null ? smsType : 1);
         app.setStatus(1);
         app.setCreateTime(LocalDateTime.now());
         app.setUpdateTime(LocalDateTime.now());

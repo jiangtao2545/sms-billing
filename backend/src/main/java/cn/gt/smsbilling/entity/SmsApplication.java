@@ -14,6 +14,8 @@ public class SmsApplication {
     private String appName;
     private String appKey;
     private BigDecimal price;
+    private String signature;
+    private Integer smsType;
     private Integer status;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
