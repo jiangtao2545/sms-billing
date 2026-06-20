@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.jiangtao</groupId>
+    <groupId>cn.gt</groupId>
     <artifactId>sms-billing</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
