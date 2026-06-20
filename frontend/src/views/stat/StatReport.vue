@@ -25,7 +25,7 @@
     <el-card>
       <div slot="header">应用统计详情</div>
       <el-table :data="appStatData" border>
-        <el-table-column prop="app_id" label="应用ID" />
+        <el-table-column prop="app_name" label="应用名称" />
         <el-table-column prop="total_count" label="总发送数" />
         <el-table-column prop="success_count" label="成功数" />
         <el-table-column prop="total_fee" label="总费用" />
@@ -61,7 +61,7 @@ export default {
         }
         this.appChart.setOption({
           tooltip: {},
-          xAxis: { type: 'category', data: res.data.map(d => d.app_id ? d.app_id.substring(0, 8) + '...' : '') },
+          xAxis: { type: 'category', data: res.data.map(d => d.app_name || d.app_id || '') },
           yAxis: { type: 'value' },
           series: [{ name: '发送量', type: 'bar', data: res.data.map(d => d.total_count) }]
         })

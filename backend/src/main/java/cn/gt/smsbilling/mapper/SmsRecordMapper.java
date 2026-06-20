@@ -11,9 +11,10 @@ import java.util.Map;
 
 @Mapper
 public interface SmsRecordMapper extends BaseMapper<SmsRecord> {
-    @Select("SELECT app_id, COUNT(*) as total_count, SUM(total_fee) as total_fee, " +
-            "SUM(CASE WHEN status=1 THEN 1 ELSE 0 END) as success_count " +
-            "FROM sms_record GROUP BY app_id")
+    @Select("SELECT r.app_id, a.app_name, COUNT(*) as total_count, SUM(r.total_fee) as total_fee, " +
+            "SUM(CASE WHEN r.status IN (1,2) THEN 1 ELSE 0 END) as success_count " +
+            "FROM sms_record r LEFT JOIN sms_application a ON r.app_id = a.app_id " +
+            "GROUP BY r.app_id, a.app_name")
     List<Map<String, Object>> statByApp();
 
     @Select("SELECT DATE_FORMAT(create_time, #{fmt}) as time_key, " +
