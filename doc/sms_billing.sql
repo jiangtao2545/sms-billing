@@ -51,4 +51,4 @@ CREATE TABLE IF NOT EXISTS `sys_login_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `sys_user` (`username`, `password`, `nickname`, `create_time`)
-VALUES ('admin', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTTyU4T/Gzq', '管理员', NOW());
+VALUES ('admin', '$2a$10$EslJzu2hkwwUnEl1zPadc.TAdYqeFcOq.948hfKa36PfODeEGETtG', '管理员', NOW());
