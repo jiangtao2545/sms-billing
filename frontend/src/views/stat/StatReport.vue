@@ -25,7 +25,11 @@
     <el-card>
       <div slot="header">应用统计详情</div>
       <el-table :data="appStatData" border>
-        <el-table-column prop="app_name" label="应用名称" />
+        <el-table-column label="应用" width="280">
+          <template slot-scope="scope">
+            {{ scope.row.app_name }}（{{ scope.row.app_id }}）
+          </template>
+        </el-table-column>
         <el-table-column prop="total_count" label="总发送数" />
         <el-table-column prop="success_count" label="成功数" />
         <el-table-column prop="total_fee" label="总费用" />

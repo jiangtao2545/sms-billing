@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:59968/sms_billing?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://10.152.160.66:59968/sms_billing?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: db_admin
-    password: 1221
+    password: t=gEfGm0NYgn
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       initial-size: 5
@@ -54,8 +54,8 @@ jwt:
 
 sms:
   gateway:
-    base-url: https://127.0.0.1/HttpSmsMt
-    name: 12313212
-    password: 123123
+    base-url: https://sms-hy.jdcloud.com/HttpSmsMt
+    name: tyjthy
+    password: d41d8cd98f00b204e9800998ecf8417e
     subid: 1
     callback-host: http://your-host:8080

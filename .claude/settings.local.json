@@ -23,7 +23,18 @@
       "Bash(javac -cp \"/home/aptx-4869/.m2/repository/cn/hutool/hutool-all/5.8.25/hutool-all-5.8.25.jar\" GenHash.java)",
       "Bash(java -cp \".:/home/aptx-4869/.m2/repository/cn/hutool/hutool-all/5.8.25/hutool-all-5.8.25.jar\" GenHash)",
       "Bash(mvn test *)",
-      "Bash(mvn compile *)"
+      "Bash(mvn compile *)",
+      "Bash(rm -rf node_modules package-lock.json)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npm ls *)",
+      "Bash(rm -rf node_modules package-lock.json .npm/cache)",
+      "Bash(npm cache *)",
+      "Bash(npm config *)",
+      "Bash(npm pack *)",
+      "Bash(tar -xzf vue-cli-service-5.0.8.tgz)",
+      "Bash(rm -rf package vue-cli-service-5.0.8.tgz)",
+      "Bash(./node_modules/.bin/vue-cli-service serve *)"
     ]
   }
 }
