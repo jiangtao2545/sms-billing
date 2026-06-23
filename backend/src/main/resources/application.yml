@@ -4,10 +4,10 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://10.152.160.66:59968/sms_billing?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    username: db_admin
-    password: t=gEfGm0NYgn
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:kingbase8://10.154.33.107:54321/gtcap?useUnicode=true&characterEncoding=utf8
+    username: gtcap
+    password: K1ngb@se!#23
+    driver-class-name: com.kingbase8.Driver
     druid:
       initial-size: 5
       min-idle: 5
